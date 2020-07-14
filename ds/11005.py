@@ -1,10 +1,7 @@
 N, B = map(int, input().split())
-A = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-dic = {}
+NOTATION = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 arr = []
-for i in range(len(A)):
-    dic[i] = A[i]
-while N != 0:
-    arr.append(dic[N % B])
+while N:
+    arr.append(NOTATION[N % B])
     N = N // B
 print(''.join(reversed(arr)))
