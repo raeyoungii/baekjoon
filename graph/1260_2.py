@@ -32,3 +32,4 @@ for _ in range(m):
     adj_lst[b].append(a)
 print(*dfs(v, []))
 print(*bfs(v))
+
