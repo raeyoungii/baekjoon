@@ -11,14 +11,14 @@ def bfs():
             n_x = x + dx[i]
             n_y = y + dy[i]
             if 0 <= n_x < N and 0 <= n_y < M:
-                if adj_lst[n_x][n_y] == 0:
-                    adj_lst[n_x][n_y] = adj_lst[x][y] + 1
+                if matrix[n_x][n_y] == 0:
+                    matrix[n_x][n_y] = matrix[x][y] + 1
                     queue.append([n_x, n_y])
 
 
 def chk():
     ans = 1
-    for i in adj_lst:
+    for i in matrix:
         for j in i:
             if j == 0:
                 return -1
@@ -28,13 +28,13 @@ def chk():
 
 
 M, N = map(int, sys.stdin.readline().split())
-adj_lst = []
+matrix = []
 queue = deque()
 for _ in range(N):
-    adj_lst.append(list(map(int, sys.stdin.readline().split())))
+    matrix.append(list(map(int, sys.stdin.readline().split())))
 for i in range(N):
     for j in range(M):
-        if adj_lst[i][j] == 1:
+        if matrix[i][j] == 1:
             queue.append([i, j])
 bfs()
 print(chk())
