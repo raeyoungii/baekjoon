@@ -27,15 +27,15 @@ def bridge_bfs(i_id, b_min):
         if b_min < cnt[x][y]:
             return b_min
         for i in range(4):
-            n_x = x + dx[i]
-            n_y = y + dy[i]
-            if 0 <= n_x < N and 0 <= n_y < N:
-                if matrix[n_x][n_y] < 0 and matrix[n_x][n_y] != i_id:
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if 0 <= nx < N and 0 <= ny < N:
+                if matrix[nx][ny] < 0 and matrix[nx][ny] != i_id:
                     return cnt[x][y]
-                if matrix[n_x][n_y] == 0 and v[n_x][n_y] is False:
-                    cnt[n_x][n_y] = cnt[x][y] + 1
-                    v[n_x][n_y] = True
-                    bridge_queue.append([n_x, n_y])
+                if matrix[nx][ny] == 0 and v[nx][ny] is False:
+                    cnt[nx][ny] = cnt[x][y] + 1
+                    v[nx][ny] = True
+                    bridge_queue.append([nx, ny])
 
 
 N = int(sys.stdin.readline())
