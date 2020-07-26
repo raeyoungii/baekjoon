@@ -3,12 +3,12 @@ import sys
 sys.setrecursionlimit(1000000)
 
 
-def dfs(v, v_d):
+def dfs(v):
     vst[v] = True
     for nxt, nxt_d in adj_lst[v]:
         if not vst[nxt]:
-            d[nxt] = v_d + nxt_d
-            dfs(nxt, v_d + nxt_d)
+            d[nxt] = d[v] + nxt_d
+            dfs(nxt)
 
 
 n = int(sys.stdin.readline())
@@ -20,11 +20,11 @@ for _ in range(n - 1):
 
 vst = [False] * (n + 1)
 d = [0] * (n + 1)
-dfs(1, 0)
+dfs(1)
 
 max_d = d.index(max(d))
 vst = [False] * (n + 1)
 d = [0] * (n + 1)
-dfs(max_d, 0)
+dfs(max_d)
 
 print(max(d))

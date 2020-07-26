@@ -1,12 +1,12 @@
 import sys
 
 
-def dfs(v, v_d):
+def dfs(v):
     vst[v] = True
     for nxt, nxt_d in adj_lst[v]:
         if not vst[nxt]:
-            d[nxt] = v_d + nxt_d
-            dfs(nxt, v_d + nxt_d)
+            d[nxt] = d[v] + nxt_d
+            dfs(nxt)
 
 
 v = int(sys.stdin.readline())
@@ -18,11 +18,11 @@ for _ in range(v):
 
 vst = [False] * (v + 1)
 d = [0] * (v + 1)
-dfs(1, 0)
+dfs(1)
 
 max_v = d.index(max(d))
 vst = [False] * (v + 1)
 d = [0] * (v + 1)
-dfs(max_v, 0)
+dfs(max_v)
 
 print(max(d))

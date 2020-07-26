@@ -2,40 +2,42 @@ import sys
 from collections import deque
 
 
-def dfs(v, lst):
+def dfs(v):
     lst.append(v)
-    vst1[v] = True
+    vst[v] = True
     for nxt in adj_lst[v]:
-        if not vst1[nxt]:
-            dfs(nxt, lst)
-    return lst
+        if not vst[nxt]:
+            dfs(nxt)
 
 
 def bfs(v):
-    lst = []
     queue.append(v)
-    vst2[v] = True
+    vst[v] = True
     while queue:
         now = queue.popleft()
         lst.append(now)
         for nxt in adj_lst[now]:
-            if not vst2[nxt]:
-                vst2[nxt] = True
+            if not vst[nxt]:
                 queue.append(nxt)
-    return lst
+                vst[nxt] = True
 
 
-N, M, V = map(int, sys.stdin.readline().split())
-adj_lst = [[] for _ in range(N + 1)]
-queue = deque()
-for _ in range(M):
+n, m, v = map(int, sys.stdin.readline().split())
+adj_lst = [[] for _ in range(n + 1)]
+for _ in range(m):
     a, b = map(int, sys.stdin.readline().split())
     adj_lst[a].append(b)
     adj_lst[b].append(a)
-for i in range(1, N + 1):
+for i in range(n + 1):
     adj_lst[i].sort()
 
-vst1 = [False] * (N + 1)
-print(*dfs(V, []))
-vst2 = [False] * (N + 1)
-print(*bfs(V))
+lst = []
+vst = [False] * (n + 1)
+dfs(v)
+print(*lst)
+
+lst = []
+vst = [False] * (n + 1)
+queue = deque()
+bfs(v)
+print(*lst)

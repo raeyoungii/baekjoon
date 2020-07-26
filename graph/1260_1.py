@@ -1,31 +1,40 @@
+import sys
+from collections import deque
+
+
 def dfs(v):
+    vst[v] = True
     print(v, end=' ')
-    visited[v] = True
-    for i in range(N + 1):
-        if matrix[v][i] == 1 and visited[i] is False:
-            dfs(i)
+    for i in range(n + 1):
+        if matrix[v][i] == 1:
+            if not vst[i]:
+                dfs(i)
 
 
 def bfs(v):
-    queue = [v]
-    visited[v] = True
+    queue.append(v)
+    vst[v] = True
     while queue:
-        v = queue[0]
+        v = queue.popleft()
         print(v, end=' ')
-        del queue[0]
-        for i in range(1, N + 1):
-            if matrix[v][i] == 1 and visited is False:
-                queue.append(i)
-                visited[i] = True
+        for i in range(1, n + 1):
+            if matrix[v][i] == 1:
+                if not vst[i]:
+                    queue.append(i)
+                    vst[i] = True
 
 
-N, M, V = map(int, input().split())
-matrix = [[0] * (N + 1) for _ in range(N + 1)]
-visited = [False for _ in range(N + 1)]
-for _ in range(M):
-    x, y = map(int, input().split())
-    matrix[x][y] = matrix[y][x] = 1
-dfs(V)
+n, m, v = map(int, sys.stdin.readline().split())
+matrix = [[0 for _ in range(n + 1)] for _ in range(n + 1)]
+for _ in range(m):
+    x, y = map(int, sys.stdin.readline().split())
+    matrix[x][y] = 1
+    matrix[y][x] = 1
+
+vst = [False] * (n + 1)
+dfs(v)
 print()
-visited = [False for _ in range(N + 1)]
-bfs(V)
+
+vst = [False] * (n + 1)
+queue = deque()
+bfs(v)

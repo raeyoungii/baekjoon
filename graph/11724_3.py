@@ -8,8 +8,8 @@ def bfs(v):
         now = queue.popleft()
         for nxt in adj_lst[now]:
             if not vst[nxt]:
-                vst[nxt] = True
                 queue.append(nxt)
+                vst[nxt] = True
 
 
 n, m = map(int, sys.stdin.readline().split())
