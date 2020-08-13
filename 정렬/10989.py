@@ -10,4 +10,4 @@ for i in range(10001):
             print(i)
 
 # TODO: 이해필요
-# counting sort
+# counting 정렬

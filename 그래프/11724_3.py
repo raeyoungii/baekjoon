@@ -3,6 +3,7 @@ from collections import deque
 
 
 def bfs(v):
+    queue.append(i)
     vst[v] = True
     while queue:
         now = queue.popleft()
@@ -23,7 +24,6 @@ for _ in range(m):
     adj_lst[v].append(u)
 for i in range(1, n + 1):
     if not vst[i]:
-        queue.append(i)
         bfs(i)
         cnt += 1
 print(cnt)

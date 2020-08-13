@@ -5,7 +5,7 @@ from collections import deque
 def dfs(v):
     vst[v] = True
     print(v, end=' ')
-    for i in range(n + 1):
+    for i in range(1, n + 1):
         if matrix[v][i] == 1:
             if not vst[i]:
                 dfs(i)
